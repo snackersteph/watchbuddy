@@ -4,17 +4,18 @@ const moviedb = require('../../helper/moviedb.js');
 module.exports = (req, res) => {
 	const { id } = req.body;
 	moviedb.details(id, data => { 
-    const { seasons } = JSON.parse(data);
-		var info = JSON.parse(data);
-		var detail = {};
-		var obj = seasons.reduce((memo, el) => {
+    const { seasons, episode_run_time } = JSON.parse(data);
+
+		const obj = seasons.reduce((memo, el) => {
 			if (el.season_number !== 0) {
-				memo[el.season_number] = [el.episode_count, "https://image.tmdb.org/t/p/w500" + el.poster_path];
+				memo[el.season_number] = [el.episode_count, `https://image.tmdb.org/t/p/w500${el.poster_path}`];
       }
       return memo;
 		}, {});
-		detail.seasons = obj;
-		detail.runtime = info.episode_run_time[0];
-		res.send(detail)
+
+		res.send({
+      seasons: obj,
+      runtime: episode_run_time[0],
+    });
 	})
 }
