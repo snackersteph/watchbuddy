@@ -1,5 +1,4 @@
 const moviedb = require('../../helper/moviedb.js');
-const { extend } = require('lodash');
 
 //This function will search for the top 10 results when inputting a term into the MovieDB api.
 module.exports = (req, res) => {

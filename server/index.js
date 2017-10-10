@@ -14,7 +14,10 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 //This function is to retrieve the top 5 recommended shows from the MovieDB api for the front page of WatchBuddy.
 app.get('/recommend', routes.recommend);
 
-app.post('/:route', (req, res) => routes[req.params.route](req, res));
+app.post('/:route', (req, res) => {
+	console.log(req.params.route);
+	routes[req.params.route](req, res);
+});
 
 // app.post('/update', function (req, res) {
 

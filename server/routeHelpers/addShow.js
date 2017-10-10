@@ -1,5 +1,6 @@
 const db = require('../../database-mysql');
 const moviedb = require('../../helper/moviedb.js');
+const moment = require('moment');
 
 //this function will add show information to the user's database as well as return the information for the current and next episode. This will also return the number of remaining episodes.
 module.exports = (req, res) => {

@@ -5,5 +5,5 @@ module.exports = {
   signup: require('./signup'),
   login: require('./login'),
   add: require('./add'),
-  addShow: require('./addShow'),
+  addshow: require('./addShow'),
 };
