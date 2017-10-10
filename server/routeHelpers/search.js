@@ -1,5 +1,6 @@
 const moviedb = require('../../helper/moviedb.js');
 
+//This function will search for the top 10 results when inputting a term into the MovieDB api.
 module.exports = (req, res) => {
 	console.log(req.body.term)
 	var title = req.body.term

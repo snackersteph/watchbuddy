@@ -1,5 +1,6 @@
 const moviedb = require('../../helper/moviedb.js');
 
+//this function will populate the seasons, episodes and runtime of episodes when a show is chosen to place into the schedule
 module.exports = (req, res) => {
 	var id = req.body.id
 	moviedb.details(id, (data) => { 

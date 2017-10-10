@@ -1,8 +1,9 @@
+//Exports all route handlers as a single object
 module.exports = {
   recommend: require('./recommend'),
   search: require('./search'),
-  signUp: require('./signUp'),
-  logIn: require('./logIn'),
+  signup: require('./signup'),
+  login: require('./login'),
   add: require('./add'),
   addShow: require('./addShow'),
 };
