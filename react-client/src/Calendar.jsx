@@ -1,37 +1,52 @@
 import React, { Component } from 'react';
+import Navbar from './components/Navbar.jsx';
+import { Container, Header, Icon, Message, Transition } from 'semantic-ui-react';
+import BigCalendar from 'react-big-calendar';
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import moment from 'moment';
 
-class Calendar extends Component {
+BigCalendar.momentLocalizer(moment);
+let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
+
+class newCalendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      myEventsList: []
     }
   }
 
-
-
-  render() {
+  render () {
     return (<Transition animation='fade up' duration={1000} transitionOnMount={true}>
-      <div className='login-form'>
-        {/*
-          Heads up! The styles below are necessary for the correct render of this example.
-          You can do same with CSS, the main idea is that all the elements up to the `Grid`
-          below must have a height of 100%.
-        */}
-        <style>
-          {`
-            body > div,
-            body > div > div,
-            body > div > div > div.login-form {
-              height: 100%;
-            }
-          `}
-        </style>
-        <div>
-              <img src={'./images/googlesignin.png'}  />
+      <div>
+      <Navbar
+      loggedIn='true' 
+      changeView = { this.props.changeView } 
+      getShowList = { this.props.getShowList } />
+
+        <Container>
+
+          <div>
+            <Header as='h3' textAlign='center'>
+              <Icon name='calendar'/> Your Calendar
+            </Header>
+
+            <BigCalendar
+              {...this.props}
+              events={this.state.myEventsList}
+              views={allViews}
+              step={60}
+              defaultDate={new Date(2015, 3, 1)}
+              style={{height: 800}}
+            />
+
             </div>
-        </div>
-      </Transition>)
-    }
+            </Container>
+          </div>
+        </Transition>);
+  }
 } 
 
-export default Calendar;
+export default newCalendar;
+
+
