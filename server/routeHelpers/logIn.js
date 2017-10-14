@@ -1,4 +1,3 @@
-const db = require('../../database-mysql');
 const utils = require('../hashUtils.js');
 const { User } = require('../../database-postgres');
 
@@ -7,18 +6,6 @@ module.exports = {
   POST: ({ body: { username, password }}, res) => {
     console.log('RECEIVED: ', username, password);
     const array = [username];
-
-    // db.checkUser(array, (data) => {
-    //   if (data.length) {
-    //     hash = data[0].password;
-    //     salt = data[0].salt;
-    //     if (utils.compareHash(password, hash, salt)) {
-    //       res.send(username);
-    //     }
-    //   }
-    //   res.status(400);
-    //   res.send();
-    // });
 
     User.findOne({ where: { username }})
       .then(({ dataValues: { username, salt, password: pwHash }}) => {

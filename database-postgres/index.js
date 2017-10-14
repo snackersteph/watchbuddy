@@ -13,6 +13,10 @@ const sequelize = new Sequelize('watchpotato', USER, PASSWORD, {
 
 const User = sequelize.define('user', userSchema);
 
+//UNCOMMENT TO UPDATE SCHEMA ON SERVER RESET (ERASES DATA)
+// User.sync({force: true});
+
+//UNCOMMENT WHEN SCHEMA IS FINALIZED TO PREVENT DB RESETS ON SERVER RESET
 User.sync();
 
 module.exports = {

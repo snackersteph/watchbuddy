@@ -22,4 +22,10 @@ module.exports.userSchema = {
   avatar: {
     type: Sequelize.STRING,
   },
+  notifications: {
+    type: Sequelize.BOOLEAN,
+  },
+  bio: {
+    type: Sequelize.STRING,
+  }
 };

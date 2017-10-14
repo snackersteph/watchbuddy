@@ -11,4 +11,5 @@ module.exports = {
   addshow: require('./addShow'),
   addmovie: require('./addmovie'),
   user: require('./user'),
+  update: require('./update'),
 };

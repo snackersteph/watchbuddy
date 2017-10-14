@@ -1,4 +1,3 @@
-const db = require('../../database-mysql');
 const utils = require('../hashUtils.js');
 const { User } = require('../../database-postgres');
 
@@ -7,8 +6,8 @@ module.exports = {
   POST: ({ body: { 
     username, 
     password,
-    phone,
-    avatarUrl,
+    phone = '',
+    avatarUrl = '',
   }}, res) => {
     //TODO: refactor to new DB schema
     // const { 
@@ -31,13 +30,5 @@ module.exports = {
     }))
       .then(() => res.send(username))
       .catch(err => console.log('Error creating user: ', err));
-
-    // db.createUser(array, (data) => {
-    //    res.send(username);
-    // });
-
-    db.createUser(array, (data) => {
-      res.send(username);
-    });
   },
 };

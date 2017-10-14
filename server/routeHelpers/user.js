@@ -4,13 +4,17 @@ const Promise = require('bluebird');
 
 module.exports = {
   GET: ({ params: { username }}, res) => {
+    if (!username) {
+      res.send(404, 'user does not exist');
+    }
     User.findOne({ where: { username }})
-      .then(({ dataValues: { id }}) => {
+      .then(({ dataValues: { id, phone, avatar, notifications, bio }}) => {
         console.log('found', username, id);
         Promise.props({
           events: Event.find({ userId: id }).exec(),
           shows: Show.find({ userId: id }).exec(),
           movies: Movie.find({ userId: id }).exec(),
+          info: { phone, avatar, notifications, bio },
         }).then(result => res.send(200, result))
         .catch(err => res.send(err));
         // res.send(JSON.stringify(id));
@@ -19,6 +23,8 @@ module.exports = {
   POST: ({ body: { events = [], shows = [], movies = [] }, params: { username }}, res) => {
     if (!(events.length || shows.length || movies.length)) {
       res.send('Nothing to change');
+    } else if (!username) {
+      res.send(404, 'user does not exist');
     }
     User.findOne({ where: { username }})
       .then(({ dataValues: { id }}) => {

@@ -24,6 +24,10 @@ app.get('/:route', (req, res) => {
 	routes[req.params.route].GET(req, res);
 });
 
+app.post('/update/:username/', (req, res) => {
+	routes.update.POST(req, res);
+})
+
 app.post('/user/:username', (req, res) => {
 	routes.user.POST(req, res);
 });
