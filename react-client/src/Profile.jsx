@@ -28,7 +28,8 @@ class Profile extends Component {
     console.log('SCHEDULING show!');
   }
 
-  goToHome(){
+  goToHome() {
+    console.log('Going Home');
     this.props.changeView('UserHome');
   }
 
@@ -46,22 +47,22 @@ class Profile extends Component {
 				loggedIn='true' changeView ={this.props.changeView} />	
         <Item.Group divided>
         <Item>
-      <Item.Image src={this.props.userAvatarUrl} />
-      <Item.Content>
-        <Item.Header> Welcome, {this.props.userName}</Item.Header>
-        <Item.Meta>
-          <span className='years'>Joined in 2017</span>
-        </Item.Meta>
-        <Item.Description>{this.props.userBio}</Item.Description>
-        <Item.Extra>
-          <Button onClick={this.editProfile}>Edit Profile &nbsp; 
-              <Icon name = 'edit' className = 'icon'  />
-          </Button>
-          <Button onClick={this.goToHome.bind(this)}>Home</Button>
-        </Item.Extra>
-      </Item.Content>
-    </Item>
-    </Item.Group>
+          <Item.Image src={this.state.avatar} />
+          <Item.Content>
+            <Item.Header> Welcome, {this.state.name}</Item.Header>
+            <Item.Meta>
+              <span className='years'>Joined in 2017</span>
+            </Item.Meta>
+            <Item.Description>{this.state.bio}</Item.Description>
+            <Item.Extra>
+              <Button onClick={this.editProfile}>Edit Profile &nbsp; 
+                  <Icon name = 'edit' className = 'icon'  />
+              </Button>
+              <Button onClick={this.goToHome.bind(this)}>Home</Button>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+        </Item.Group>
           <Table celled inverted selectable>
           <Table.Header>
             <Table.Row>
